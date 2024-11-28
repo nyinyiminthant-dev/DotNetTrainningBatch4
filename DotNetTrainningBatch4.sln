@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainningBatch4.ConsoleApp", "DotNetTrainningBatch4.ConsoleApp\DotNetTrainningBatch4.ConsoleApp.csproj", "{A00F62F7-324E-412F-8F89-1DABC84E86E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch4.ConsoleApp", "DotNetTrainningBatch4.ConsoleApp\DotNetTrainingBatch4.ConsoleApp.csproj", "{A00F62F7-324E-412F-8F89-1DABC84E86E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{C44C4EB5-79D9-42A2-B8A2-FD60E62EC357}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
