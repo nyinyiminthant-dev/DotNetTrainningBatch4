@@ -29,20 +29,16 @@ namespace DotNetTrainingBatch4.ConsoleApp
             adapter.Fill(dt);
             connection.Close();
 
-            if (dt.Rows.Count == 0)
-            {
-                Console.WriteLine("No Data Found");
-                return;
-            }
-
-            DataRow dr = dt.Rows[0];
             
+
+            foreach (DataRow dr in dt.Rows)
+            {
                 Console.WriteLine("Blog Id => " + dr["BlogId"]);
                 Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
                 Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
                 Console.WriteLine("Blog Content => " + dr["BlogContent"]);
                
-            
+            }
         }
 
         public void Edit(int id)
@@ -57,13 +53,18 @@ namespace DotNetTrainingBatch4.ConsoleApp
             adapter.Fill(dt);   
             connection.Close();
 
-            foreach(DataRow dr in dt.Rows)
+            if(dt.Rows.Count == 0)
             {
+                Console.WriteLine("No Data Found!");
+                return;
+            }
+
+            DataRow dr = dt.Rows[0];
                 Console.WriteLine("Blog Id => " + dr["BlogId"]);
                 Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
                 Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
                 Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-            }
+            
 
         }
 
