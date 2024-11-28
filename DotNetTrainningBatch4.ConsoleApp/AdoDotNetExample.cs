@@ -12,7 +12,7 @@ namespace DotNetTrainingBatch4.ConsoleApp
     {
         private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
-            DataSource = "",
+            DataSource = "DESKTOP-3GS747L",
             InitialCatalog = "DotNetTrainingBatch4",
             UserID = "sa",
             Password = "sasa@123"

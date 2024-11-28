@@ -9,5 +9,12 @@ AdoDotNetExample dotNetExample = new AdoDotNetExample();
 //dotNetExample.Create("7th times", "Nyi Nyi", "Nm@gmail.com");
 //dotNetExample.Update(2, "testTitle", "Nyi Nyi", "n@gmail.com");
 //dotNetExample.Delete(2);
-dotNetExample.Edit(2);
+//dotNetExample.Edit(2);
+
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();
+
+
+
 Console.ReadKey();
