@@ -9,13 +9,12 @@ namespace DotNetTrainingBatch4.ConsoleApp
 {
     internal static class ConnectionStrings
     {
-       public static SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+      public static  SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".",
             InitialCatalog = "DotNetTrainingBatch4",
             UserID = "sa",
-            Password = "sasa@123"
-
+            Password  = "sasa@123"
         };
     }
 }

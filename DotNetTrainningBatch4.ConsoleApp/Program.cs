@@ -12,9 +12,8 @@ AdoDotNetExample dotNetExample = new AdoDotNetExample();
 //dotNetExample.Edit(2);
 
 
+
 DapperExample dapperExample = new DapperExample();
 dapperExample.Run();
-
-
 
 Console.ReadKey();

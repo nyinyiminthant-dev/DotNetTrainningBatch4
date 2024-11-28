@@ -14,53 +14,54 @@ namespace DotNetTrainingBatch4.ConsoleApp
         public void Run()
         {
             //Read();
+            //Edit(4);
             //Edit(2);
-            //Edit(3);
-            //Create("Dapper", "Nyi Nyi", "n@gmail.com");
-            //Update(3,"Good","Nyi","v@gmail.com");
-            Delete(3);
+            //Create("C#", "Nyi Nyi", "c@gmail.com");
+            //Update(4, "Book", "Nyi Nyi", "N@gmail.com");
+            Delete(5);
         }
 
-        private void Read()
+        public void Read()
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-            List<BlogDot> lst = db.Query<BlogDot>("SELECT * FROM Tbl_Blog").ToList();
+            using IDbConnection db = new SqlConnection(ConnectionStrings.connectionStringBuilder.ConnectionString);
+            List<BlogDot> blog = db.Query<BlogDot>("SELECT * FROM Tbl_Blog").ToList();
 
-            foreach (BlogDot item in lst)
+            foreach (BlogDot item in blog)
             {
                 Console.WriteLine("Blog Id => " + item.BlogId);
                 Console.WriteLine("Blog Title => " + item.BlogTitle);
-                Console.WriteLine("BLog Author => " + item.BlogAuthor);
+                Console.WriteLine("Blog Author => " + item.BlogAuthor);
                 Console.WriteLine("Blog Content => " + item.BlogContent);
-                Console.WriteLine("_________________________________________");
+                Console.WriteLine("__________________________________________");
             }
         }
 
-        private void Edit(int id)
+        public void Edit(int id)
         {
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<BlogDot>("SELECT * FROM Tbl_Blog WHERE BlogId = @BlogId ",new BlogDot {BlogId = id}).FirstOrDefault();
+            using IDbConnection db = new SqlConnection(ConnectionStrings.connectionStringBuilder.ConnectionString);
+            var item = db.Query("SELECT * FROM Tbl_Blog WHERE BlogId = @BlogId", new BlogDot { BlogId = id }).FirstOrDefault();
 
             if (item is null)
             {
                 Console.WriteLine("No Data Found");
-                Console.WriteLine("____________________");
+                Console.WriteLine("_________________");
                 return;
             }
 
             Console.WriteLine("Blog Id => " + item.BlogId);
             Console.WriteLine("Blog Title => " + item.BlogTitle);
-            Console.WriteLine("BLog Author => " + item.BlogAuthor);
+            Console.WriteLine("Blog Author => " + item.BlogAuthor);
             Console.WriteLine("Blog Content => " + item.BlogContent);
-            Console.WriteLine("_________________________________________");
+            Console.WriteLine("__________________________________________");
         }
 
-        private void Create (string title,string author,string content)
+        public void Create(string title, string author, string content)
         {
+
             var item = new BlogDot
             {
-             BlogTitle = title,
-             BlogAuthor = author,
+                BlogTitle = title,
+                BlogAuthor = author,
                 BlogContent = content
             };
 
@@ -73,51 +74,45 @@ namespace DotNetTrainingBatch4.ConsoleApp
            ,@BlogAuthor
            ,@BlogContent)";
 
-           using IDbConnection db = new  SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-          int result =  db.Execute(query,item);
-
-            string message = result > 0 ? "Saving successful" : "Saving Fail";
-            Console.WriteLine(message);
+            using IDbConnection db = new SqlConnection(ConnectionStrings.connectionStringBuilder.ConnectionString);
+            int i = db.Execute(query, item);
+            string messsage = i > 0 ? "Saving Successful" : "Saving Fail";
+            Console.WriteLine(messsage);
         }
 
-        private void Update(int id,string title, string author, string content)
+        public void Update(int id, string title, string author, string content)
         {
             var item = new BlogDot
             {
-                BlogId = id,
-                BlogTitle= title,
-                BlogAuthor = author,    
+                BlogId = id
+                , BlogTitle = title,
+                BlogAuthor = author,
                 BlogContent = content
             };
-
-            string query = @"UPDATE [dbo].[Tbl_Blog]
+            string query = @"
+UPDATE [dbo].[Tbl_Blog]
    SET [BlogTitle] = @BlogTitle
       ,[BlogAuthor] = @BlogAuthor
       ,[BlogContent] = @BlogContent
- WHERE BlogId = @BlogId;";
+ WHERE BlogId =@BlogId";
 
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
-            string message = result > 0 ? "Updating successful " : "Updating fail";
-            Console.WriteLine (message);    
+            using IDbConnection db = new SqlConnection(ConnectionStrings.connectionStringBuilder.ConnectionString);
+          int i =   db.Execute(query, item);
+            string message = i > 0 ? "Updating Successful" : "Updating Fail";
+            Console.WriteLine(message); 
+            
         }
 
-
-        private void Delete(int id)
+        public void Delete(int id)
         {
-            var item = new BlogDot
-            {
-                BlogId= id
-            };
+            var item = new BlogDot { BlogId = id };
 
-            string query = @"
-DELETE FROM [dbo].[Tbl_Blog]
-      WHERE BlogId = @BlogId;";
-            using IDbConnection db = new SqlConnection(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
-            string message = result > 0 ? "Deleting successful" : "Deleting fail";
-           Console.WriteLine (message);
+            string query = "DELETE FROM Tbl_Blog WHERE BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(ConnectionStrings.connectionStringBuilder.ConnectionString);
+           int i =  db.Execute(query,item);
+            string message = i > 0 ? "Deleting Successful" : "Deleting Fail";
+            Console.WriteLine(message); 
         }
-       
     }
 }
